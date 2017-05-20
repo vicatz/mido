@@ -11,8 +11,8 @@
  */
 
 #include <linux/pm_runtime.h>
-#include <mhi_sys.h>
-#include <mhi.h>
+#include "mhi_sys.h"
+#include "mhi.h"
 #include <mhi_bhi.h>
 #include <mhi_hwio.h>
 
