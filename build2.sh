@@ -5,7 +5,7 @@ kernel_dir=$PWD
 build=$kernel_dir/out
 export CROSS_COMPILE="/home/arn4v/velvet/toolchains/aarch64-linux-android-4.9/bin/aarch64-linux-android-"
 kernel="velvet"
-version="t4.62"
+version="r4.1"
 vendor="xiaomi"
 device="mido-los"
 zip=zip
@@ -20,15 +20,16 @@ export KBUILD_BUILD_USER=arnavgosain
 export KBUILD_BUILD_HOST=velvet
 
 function clean() {
-rm -rf out; mkdir out; export ARCH=arm64; make clean && make mrproper
+rm -rf out
+mkdir out
+export ARCH=arm64
+make clean && make mrproper
 }
 
 function build() {
-make "$config"; make "$jobcount"; cp arch/arm64/boot/"$kerneltype" "$zip"/"$kerneltype"
-}
-
-function cleanbuild() {
-clean; build; kzip
+make "$config"
+make "$jobcount"
+cp arch/arm64/boot/"$kerneltype" "$zip"/"$kerneltype"
 }
 
 function kzip() {
@@ -54,7 +55,9 @@ echo $kernel_dir
 
 if [[ "$1" =~ "cleanbuild" ]];
 then
-    cleanbuild
+    clean
+    build
+    kzip
 else
     if [[ "$1" =~ "reset" ]];
     then
@@ -76,8 +79,4 @@ then
     git fetch origin
     git checkout origin/cm-14.1
     git reset --hard
-fi
-
-if [ -z $1]; then
-cleanbuild
 fi
