@@ -3,9 +3,9 @@ echo "Welcome to Velvet Kernel Builder!"
 LC_ALL=C date +%Y-%m-%d
 kernel_dir=$PWD
 build=$kernel_dir/out
-export CROSS_COMPILE="/home/adesh/Android/Adesh/kernel/gcc-linaro-6.3.1-2017.05-i686_aarch64-linux-gnu/bin/aarch64-linux-gnu-"
+export CROSS_COMPILE="/home/adesh/Adesh/kernel/gcc-linaro-4.9.4-2017.01-i686_aarch64-linux-gnu/bin/aarch64-linux-gnu-"
 kernel="velvet"
-version="r5.1"
+version="r5.2"
 vendor="xiaomi"
 device="mido-los"
 zip=zip
@@ -15,7 +15,7 @@ kerneltype="Image.gz-dtb"
 jobcount="-j$(grep -c ^processor /proc/cpuinfo)"
 #modules_dir=$kernel_dir/"$zip"/system/lib/modules
 modules_dir=$kernel_dir/"$zip"/modules
-zip_name="$kernel"-"$version"-"$device".zip
+zip_name="$kernel"-"$version"-"$device"-"oreo".zip
 export KBUILD_BUILD_USER=adesh15
 export KBUILD_BUILD_HOST=velvet
 
